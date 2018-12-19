@@ -1,0 +1,136 @@
+/* Element Styles -----------------------------*/
+body {
+  font-family: Lato, Arial, sans-serif;
+  color: #4f4f4f;
+  background-color: #fcfcf7;
+}
+
+p {
+  /* font-size: 1rem; */
+  font-weight: normal;
+  line-height: 1.25rem;
+  margin: .4rem 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: .05rem;
+  margin: .4rem 0;
+}
+
+h3 {
+  /* text-align: center; */
+  text-transform: uppercase;
+  margin: 0 0 30px 10px;
+}
+
+/* Layout Styles -----------------------------*/
+.container {
+    width: 95%;
+    /* max-width: 1100px; */
+    margin: 3rem auto;
+}
+
+.row {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  /* padding: 1rem; */
+}
+
+/* Image Styles -----------------------------*/
+
+
+.employee-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 380px;
+  background-color: #fff;
+  border: 1px solid #c4c4c4;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.employee-card:hover {
+  box-shadow: 0 0 8px 4px rgba(140, 140, 140, 0.2);
+}
+
+.profile-pic {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  /* border: 1px solid #4f4f4f; */
+  margin-right: 20px;
+}
+
+.employee-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.city {
+  text-transform: capitalize;
+}
+
+.employee-info h4 {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+
+.employee-info p {
+  text-align: left;
+  color: #8e8e8e;
+}
+
+/* Employee Details styling ----------------------------*/
+
+#overlay {
+  display: none;
+  /* flex-direction: column; */
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* color: #FFFFFF; */
+  /* justify-content: center; */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#employeeDetails {
+  width: 400px;
+  height: 400px;
+  border-radius: 6px;
+  background-color: #fff;
+  margin: auto;
+}
+
+/* .thumbnail {
+  float: left;
+  margin: 1rem;
+}
+
+.roundedBorder {
+  padding: .5rem;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+}
+
+.roundedBorder:hover {
+    box-shadow: 0 0 4px 2px rgba(140, 140, 140, 0.2);
+} */
+
+/* Clearfix -------------------------------- */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}

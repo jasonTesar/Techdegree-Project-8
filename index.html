@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="lightbox/css/lightbox.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>An API-Based Employee Directory</title>
+  </head>
+  <body>
+    <div class="container"> <!-- container div for whole page -->
+      <div id="overlay">
+        <div id="employeeDetails">
+        </div>
+      </div>
+      <h3>Awesome Startup Employee Directory</h3>
+      <div class="row clearfix" id="gallery"></div> <!-- container div for thumbnail image grid -->
+    </div>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="lightbox/js/lightbox-plus-jquery.js"></script>
+    <script>
+      lightbox.option({
+        'positionFromTop': 20,
+        'wrapAround': true
+      })
+  </script>
+  </body>
+</html>
