@@ -6,7 +6,6 @@ body {
 }
 
 p {
-  /* font-size: 1rem; */
   font-weight: normal;
   line-height: 1.25rem;
   margin: .4rem 0;
@@ -23,7 +22,6 @@ h6 {
 }
 
 h3 {
-  /* text-align: center; */
   text-transform: uppercase;
   margin: 0 0 30px 10px;
 }
@@ -31,7 +29,6 @@ h3 {
 /* Layout Styles -----------------------------*/
 .container {
     width: 95%;
-    /* max-width: 1100px; */
     margin: 3rem auto;
 }
 
@@ -39,12 +36,9 @@ h3 {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  /* padding: 1rem; */
 }
 
-/* Image Styles -----------------------------*/
-
-
+/* Gallery Styles -----------------------------*/
 .employee-card {
   display: flex;
   justify-content: flex-start;
@@ -65,7 +59,6 @@ h3 {
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  /* border: 1px solid #4f4f4f; */
   margin-right: 20px;
 }
 
@@ -90,15 +83,11 @@ h3 {
   color: #8e8e8e;
 }
 
-/* Employee Details styling ----------------------------*/
-
+/* Overlay Styles ----------------------------*/
 #overlay {
   display: none;
-  /* flex-direction: column; */
   position: fixed;
   background-color: rgba(0, 0, 0, 0.8);
-  /* color: #FFFFFF; */
-  /* justify-content: center; */
   top: 0;
   bottom: 0;
   left: 0;
@@ -123,7 +112,6 @@ h3 {
 
 #employee-details {
   width: 400px;
-  /* height: 400px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -143,7 +131,8 @@ h3 {
 }
 
 #employee-details p {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  margin: .6rem 0;
 }
 
 hr {
@@ -153,24 +142,6 @@ hr {
   margin: 30px 0;
 }
 
-/* .thumbnail {
-  float: left;
-  margin: 1rem;
-}
-
-.roundedBorder {
-  padding: .5rem;
-  border: 1px solid #c9c9c9;
-  border-radius: 5px;
-}
-
-.roundedBorder:hover {
-    box-shadow: 0 0 4px 2px rgba(140, 140, 140, 0.2);
-} */
-
-/* Clearfix -------------------------------- */
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
+.address {
+  text-transform: capitalize;
 }

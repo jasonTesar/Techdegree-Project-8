@@ -1,22 +1,80 @@
-const gallery = document.querySelector('#gallery');
 const overlay = document.querySelector('#overlay');
 const employeeDetails = document.querySelector('#employee-details');
 const cards = document.querySelectorAll('.employee-card');
 let results = [];
+const states = [
+  { name: 'alabama', abbr: 'AL'},
+  { name: 'alaska', abbr: 'AK'},
+  { name: 'american samoa', abbr: 'AS'},
+  { name: 'arizona', abbr: 'AZ'},
+  { name: 'arkansas', abbr: 'AR'},
+  { name: 'california', abbr: 'CA'},
+  { name: 'colorado', abbr: 'CO'},
+  { name: 'connecticut', abbr: 'CT'},
+  { name: 'delaware', abbr: 'DE'},
+  { name: 'district of columbia', abbr: 'DC'},
+  { name: 'florida', abbr: 'FL'},
+  { name: 'georgia', abbr: 'GA'},
+  { name: 'guam', abbr: 'GU'},
+  { name: 'hawaii', abbr: 'HI'},
+  { name: 'idaho', abbr: 'ID'},
+  { name: 'illinois', abbr: 'IL'},
+  { name: 'indiana', abbr: 'IN'},
+  { name: 'iowa', abbr: 'IA'},
+  { name: 'kansas', abbr: 'KS'},
+  { name: 'kentucky', abbr: 'KY'},
+  { name: 'louisiana', abbr: 'LA'},
+  { name: 'maine', abbr: 'ME'},
+  { name: 'marshall islands', abbr: 'MH'},
+  { name: 'maryland', abbr: 'MD'},
+  { name: 'massachusetts', abbr: 'MA'},
+  { name: 'michigan', abbr: 'MI'},
+  { name: 'minnesota', abbr: 'MN'},
+  { name: 'mississippi', abbr: 'MS'},
+  { name: 'missouri', abbr: 'MO'},
+  { name: 'montana', abbr: 'MT'},
+  { name: 'nebraska', abbr: 'NE'},
+  { name: 'nevada', abbr: 'NV'},
+  { name: 'new hampshire', abbr: 'NH'},
+  { name: 'new jersey', abbr: 'NJ'},
+  { name: 'new mexico', abbr: 'NM'},
+  { name: 'new york', abbr: 'NY'},
+  { name: 'north carolina', abbr: 'NC'},
+  { name: 'north dakota', abbr: 'ND'},
+  { name: 'northern mariana islands', abbr: 'NP'},
+  { name: 'ohio', abbr: 'OH'},
+  { name: 'oklahoma', abbr: 'OK'},
+  { name: 'oregon', abbr: 'OR'},
+  { name: 'pennsylvania', abbr: 'PA'},
+  { name: 'puerto rico', abbr: 'PR'},
+  { name: 'rhode island', abbr: 'RI'},
+  { name: 'south carolina', abbr: 'SC'},
+  { name: 'south dakota', abbr: 'SD'},
+  { name: 'tennessee', abbr: 'TN'},
+  { name: 'texas', abbr: 'TX'},
+  { name: 'us virgin islands', abbr: 'VI'},
+  { name: 'utah', abbr: 'UT'},
+  { name: 'vermont', abbr: 'VT'},
+  { name: 'virginia', abbr: 'VA'},
+  { name: 'washington', abbr: 'WA'},
+  { name: 'west virginia', abbr: 'WV'},
+  { name: 'wisconsin', abbr: 'WI'},
+  { name: 'wyoming', abbr: 'WY'}
+];
 
 // ------------------------------------
 // FETCH FUNCTIONS
 // ------------------------------------
 
-// Fetches employee data from random user website, parses it from JSON into JS, and sends the results to the makeGallery function.
-// CONSIDER: also calling a makeOverlay function and putting brackets around both function calls?
-// The makeOverlay function would be called from a click event listener on the gallery cards?
+// Fetches employee data from random user website,
+// parses it from JSON into JS, sends the results to makeGallery(),
+// and saves results to a variable for populating overlay details.
 fetch('https://randomuser.me/api/?results=12&nat=us')
 .then(response => response.json())
 .then(response => {
   makeGallery(response.results);
   results = response.results;
-})
+});
 
 // ------------------------------------
 // EVENT LISTENERS
@@ -35,17 +93,12 @@ for (let i = 0; i < cards.length; i += 1) {
       }
     }
     overlay.style.display = 'flex';
-    // console.log(id);
     addDetails(results, id);
   });
 }
 
-
-
-
-
 // ------------------------------------
-// HELPER FUNCTIONS
+// OTHER FUNCTIONS
 // ------------------------------------
 
 // Creates the intial gallery of employee cards
@@ -61,12 +114,16 @@ function makeGallery(results) {
       </div>
     `;
     cards[i].innerHTML = employeeCard;
-  };
+  }
 }
 
 // Adds the details of the clicked employee to the overlay
 function addDetails(results, id) {
   let index = parseInt(id.slice(4, id.length)) - 1;
+  let state = results[index].location.state;
+  let abbreviation = convertState(state);
+  let dob = results[index].dob.date;
+  let birthday = convertBDay(dob);
   let details = `
     <button class="x">&times;</button>
     <img class="profile-pic-lg" alt="profile picture" src="${results[index].picture.large}">
@@ -74,12 +131,12 @@ function addDetails(results, id) {
     <p>${results[index].email}</p>
     <p class="city">${results[index].location.city}</p>
     <hr>
-    <p class="phone">${results[index].cell}</p>
+    <p class="phone">${results[index].cell.replace(')-', ') ')}</p>
     <p class="address">
       ${results[index].location.street + ', ' +
-      results[index].location.state + ' ' +
+      abbreviation + ' ' + '&nbsp;' +
       results[index].location.postcode}</p>
-    <p class="birthday">${results[index].dob.date}</p>
+    <p class="birthday">Birthday: ${birthday}</p>
   `;
   employeeDetails.innerHTML = details;
 
@@ -88,4 +145,21 @@ function addDetails(results, id) {
   x.addEventListener('click', () => {
     overlay.style.display = 'none';
   });
+}
+
+// Converts state name to abbreviation
+function convertState(name) {
+   let abbreviation = states
+    .filter(state => name === state.name)
+    .map(state => state.abbr);
+    return abbreviation;
+}
+
+// Converts dob to dd/mm/yy format
+function convertBDay(dob) {
+  let year = dob.slice(0,4);
+  let month = dob.slice(5,7);
+  let day = dob.slice(8,10);
+  let converted = month + '/' + day + '/' + year;
+  return converted;
 }
