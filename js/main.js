@@ -1,5 +1,6 @@
 const gallery = document.querySelector('#gallery');
 const overlay = document.querySelector('#overlay');
+const employeeDetails = document.querySelector('#employee-details');
 const cards = document.querySelectorAll('.employee-card');
 let results = [];
 
@@ -67,11 +68,20 @@ function makeGallery(results) {
 
 // Adds the details of the clicked employee to the overlay
 function addDetails(results, id) {
-  
-  console.log(id);
-  // let details = `
-  //
-  // `;
-  //
-  // id.innerHTML = details;
+  let index = parseInt(id.slice(4, id.length)) - 1;
+  let details = `
+    <img class="profile-pic" alt="profile picture" src="${results[index].picture.large}">
+    <h4>${results[index].name.first + ' ' + results[index].name.last}</h4>
+    <p>${results[index].email}</p>
+    <p class="city">${results[index].location.city}</p>
+    <hr>
+    <p class="phone">${results[index].cell}</p>
+    <p class="address">
+      ${results[index].location.street + ' ' +
+      results[index].location.city + ' ' +
+      results[index].location.state + ' ' +
+      results[index].location.postcode}</p>
+    <p class="birthday">${results[index].dob.date}</p>
+  `;
+  employeeDetails.innerHTML = details;
 }
