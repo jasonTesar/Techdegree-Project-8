@@ -2,6 +2,20 @@ const gallery = document.querySelector('#gallery');
 const overlay = document.querySelector('#overlay');
 
 // ------------------------------------
+// EVENT LISTENERS
+// ------------------------------------
+
+gallery.addEventListener('click', (event) => {
+  overlay.style.display = 'flex';
+  // if (event.target.className == 'employee-card') {
+  // }
+});
+
+overlay.addEventListener('click', () => {
+  overlay.style.display = 'none';
+});
+
+// ------------------------------------
 // FETCH FUNCTIONS
 // ------------------------------------
 
@@ -12,7 +26,10 @@ const overlay = document.querySelector('#overlay');
 // The makeOverlay function would be called from a click event listener on the gallery cards?
 fetch('https://randomuser.me/api/?results=12&nat=us')
   .then(response => response.json())
-  .then(response => makeGallery(response.results))
+  .then(response => {
+    makeGallery(response.results);
+    // addOverlayDetails(response.results)
+  })
 
 // ------------------------------------
 // HELPER FUNCTIONS
@@ -36,10 +53,3 @@ function makeGallery(results) {
     gallery.innerHTML = employeeCards;
   };
 }
-
-gallery.addEventListener('click', (event) => {
-  if (event.target.className == 'employee-card') {
-    overlay.style.display = 'flex';
-
-  }
-});
