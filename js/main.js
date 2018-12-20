@@ -40,10 +40,8 @@ for (let i = 0; i < cards.length; i += 1) {
   });
 }
 
-// Hides the overlay when clicked
-overlay.addEventListener('click', () => {
-  overlay.style.display = 'none';
-});
+
+
 
 
 // ------------------------------------
@@ -70,18 +68,24 @@ function makeGallery(results) {
 function addDetails(results, id) {
   let index = parseInt(id.slice(4, id.length)) - 1;
   let details = `
-    <img class="profile-pic" alt="profile picture" src="${results[index].picture.large}">
+    <button class="x">&times;</button>
+    <img class="profile-pic-lg" alt="profile picture" src="${results[index].picture.large}">
     <h4>${results[index].name.first + ' ' + results[index].name.last}</h4>
     <p>${results[index].email}</p>
     <p class="city">${results[index].location.city}</p>
     <hr>
     <p class="phone">${results[index].cell}</p>
     <p class="address">
-      ${results[index].location.street + ' ' +
-      results[index].location.city + ' ' +
+      ${results[index].location.street + ', ' +
       results[index].location.state + ' ' +
       results[index].location.postcode}</p>
     <p class="birthday">${results[index].dob.date}</p>
   `;
   employeeDetails.innerHTML = details;
+
+  // Hides the overlay when the x is clicked
+  let x = document.querySelector('.x');
+  x.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
 }
